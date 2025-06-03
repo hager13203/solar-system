@@ -30,8 +30,8 @@ jobs:
       - name: install npm
         run: npm install
 
-      - name: unit testing
-        run: npm test
+      - name: coverage tests
+        run: npm run coverage
 
       - name: using Artifacts
         uses: actions/upload-artifact@v4
