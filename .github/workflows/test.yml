@@ -1,7 +1,7 @@
 name: first wf
 
 # when to tragger
-on: pull_request
+on: workflow_dispatch
 
 # stages
 jobs: 
