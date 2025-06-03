@@ -6,7 +6,7 @@ on: push
 # stages
 jobs: 
     first-job: 
-        runs-on: ubuntu
+        runs-on: ubuntu-latest
         steps: 
             - name: print name
               run: echo "hager"
