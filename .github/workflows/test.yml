@@ -1,0 +1,12 @@
+name: first wf
+
+# when to tragger
+on: push
+
+# stages
+jobs: 
+    first-job: 
+        runs-on: ubuntu
+        steps: 
+            - name: print name
+              run: echo "hager"
