@@ -1,12 +1,28 @@
-name: first wf
-
-# when to tragger
-on: workflow_dispatch
-
-# stages
-jobs: 
-    first-job: 
+name: Cowsay UI/MOBILE
+ 
+on: push
+ 
+jobs:
+    Ascii_job:
         runs-on: ubuntu-latest
-        steps: 
-            - name: print name
-              run: echo "hager"
+        steps:
+            - name: checkout repo
+              uses: actions/checkout@v4
+ 
+           
+            - name: install cowsay program
+              run: sudo apt-get install cowsay -y
+             
+            - name: Execute cowsay CMD
+              run: cowsay -f dragon "Run for cover, iam a Dragon....RAWR" >> dragon.txt
+           
+            - name: Test File Exists
+              run: grep -i "dragon" dragon.txt
+           
+            - name: Read File
+              run: cat dragon.txt
+ 
+            - name: checkout repo files
+              run: ls
+ 
+ 
