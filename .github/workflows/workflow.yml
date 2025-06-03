@@ -1,35 +1,41 @@
 name: fourth wf
 
-on: 
-    workflow_dispatch:
-    push:
-        branches:
-            - main
-            - 'feature/*'
-
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - "feature/*"
 
 jobs:
-   unit-testing:
-        name: Unit Testing
-        strategy:
-            matrix:
-                node_version: [18,20]
-                operating_system: [ubuntu-latest, macos-latest]
+  unit-testing:
+    name: Unit Testing
+    strategy:
+      matrix:
+        node_version: [18, 20]
+        operating_system: [ubuntu-latest, macos-latest]
 
-        runs-on: ${{matrix.operating_system}}
+    runs-on: ${{matrix.operating_system}}
 
-        steps:
-            #use uses with actions not run
-            - name: Checkout
-              uses: actions/checkout@v4
+    steps:
+      #use uses with actions not run
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Setup node
-              uses: actions/setup-node@v4
-              with:
-                node-version: ${{matrix.node_version}}
-            
-            - name: install npm
-              run: npm install
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{matrix.node_version}}
 
-            - name: unit testing
-              run: npm test
+      - name: install npm
+        run: npm install
+
+      - name: unit testing
+        run: npm test
+
+      - name: using Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-result
+          path: coverage
+          retention-days: 5
